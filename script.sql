@@ -16,6 +16,7 @@ CREATE TABLE author (
 CREATE TABLE category (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
+  description VARCHAR(45) NOT NULL,
   PRIMARY KEY (id));
 
 
@@ -36,6 +37,8 @@ INSERT INTO status (name) VALUES ('complete');
 CREATE TABLE comic (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
+  views INT NOT NULL,
+  content VARCHAR(45) NOT NULL,
   thumbnail VARCHAR(45) NOT NULL,
   author_id INT NOT NULL,
   status_id INT NOT NULL,
@@ -53,7 +56,9 @@ CREATE TABLE comic (
 -- -----------------------------------------------------
 CREATE TABLE chapter (
   id INT NOT NULL AUTO_INCREMENT,
-  number INT NOT NULL,
+  name VARCHAR(45) NOT NULL,
+  description VARCHAR(45) NOT NULL,
+  upload_date DATETIME DEFAULT NOW(),
   source VARCHAR(45) NOT NULL,
   comic_id INT NOT NULL,
   PRIMARY KEY (id),
