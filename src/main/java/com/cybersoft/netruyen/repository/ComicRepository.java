@@ -15,7 +15,5 @@ public interface ComicRepository extends JpaRepository<Comic, Integer> {
 
 	@Query(value="call get_comics_by_name(:name)", nativeQuery = true)
 	List<Map<String, ?>> getComisByName(@Param("name") String name);
-	
-	@Query(value="call get_comics_by_author_name(:name)", nativeQuery = true)
-	List<Map<String, ?>> getComicsByAuthorName(@Param("name") String name);
+
 }

@@ -43,9 +43,4 @@ public class ComicServiceImp implements IComicService {
 		return comicRepository.getComisByName(name);
 	}
 
-	@Override
-	public List<Map<String, ?>> getComicsByAuthorName(String name) {
-		// TODO Auto-generated method stub
-		return comicRepository.getComicsByAuthorName(name);
-	}
 }

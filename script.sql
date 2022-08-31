@@ -63,25 +63,14 @@ begin
 	select c.name, c.views, c.thumbnail,  group_concat(ch.name separator ', ') Chuong
     from comic c 
     join chapter ch on ch.comic_id = c.id 
-    where locate(name_, c.name) > 0
-    group by c.id;
-end//
-DELIMITER ;
-
-DELIMITER //
-create procedure get_comics_by_author_name(name_ varchar(45))
-begin
-	select c.name, c.views, c.thumbnail, group_concat(ch.name separator ', ') Chuong
-	from comic c 
-    join chapter ch on ch.comic_id = c.id 
-	join author au on au.id = c.author_id 
-	where au.name= name_
+    join author au on au.id = c.author_id
+    where locate(name_, c.name) > 0 or au.name = name_
     group by c.id;
 end//
 DELIMITER ;
 
 call get_comics_by_name("M");
-call get_comics_by_author_name("fokuda");
+call get_comics_by_name("fokuda");
 
 -- -----------------------------------------------------
 -- Table `netruyen`.`chapter`

@@ -42,9 +42,4 @@ public class ComicController {
 		return new ResponseEntity<List<Map<String, ?>>>(comics, HttpStatus.OK);
 	}
 	
-	@GetMapping("/sreachbyauthor/{author_name}")
-	public ResponseEntity<?> getComicsByAuthorName(@PathVariable("author_name") String nameAuthor) {
-		List<Map<String, ?>> comics = comicService.getComicsByAuthorName(nameAuthor);
-		return new ResponseEntity<List<Map<String, ?>>>(comics, HttpStatus.OK);
-	}
 }

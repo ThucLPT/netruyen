@@ -13,6 +13,5 @@ public interface IComicService {
 	Comic toJson(String comic, MultipartFile file);
 	
 	public List<Map<String, ?>> getComicsByName(String name);
-	
-	public List<Map<String, ?>> getComicsByAuthorName(String name);
+
 }
