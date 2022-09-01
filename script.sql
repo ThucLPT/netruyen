@@ -8,7 +8,9 @@ CREATE TABLE author (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
   PRIMARY KEY (id));
-
+insert into author(name) value("Fokuda");
+insert into author(name) value("Alic");
+insert into author(name) value("Alexender");
 
 -- -----------------------------------------------------
 -- Table `netruyen`.`category`
@@ -49,7 +51,26 @@ CREATE TABLE comic (
   CONSTRAINT fk_comic_status1
     FOREIGN KEY (status_id)
     REFERENCES status (id));
+insert comic(name, views, content, thumbnail, author_id, status_id) value ("Doreamon", 112, "Mèo máy đến từ tương lai", "", 1, 2);
+insert comic(name, views, content, thumbnail, author_id, status_id) value ("Mèo và chuột", 111, "Mào bắt chuột", "", 1, 2);
+insert comic(name, views, content, thumbnail, author_id, status_id) value ("Chú bé bút chì", 200, "Chú bé và cây bút chì", "", 2, 1);
+insert comic(name, views, content, thumbnail, author_id, status_id) value ("Sakura thủ lĩnh thẻ bài", 100, "Một cô bé chơi bài", "", 3, 1);
+insert comic(name, views, content, thumbnail, author_id, status_id) value ("Thủy thủ mặt trăng", 112, "Những cô gái bay vào mặt trăng", "", 3, 2);
 
+DELIMITER //
+create procedure get_comics_by_name(name_ varchar(45))
+begin
+	select c.name, c.views, c.thumbnail,  group_concat(ch.name separator ', ') Chuong
+    from comic c 
+    join chapter ch on ch.comic_id = c.id 
+    join author au on au.id = c.author_id
+    where locate(name_, c.name) > 0 or au.name = name_
+    group by c.id;
+end//
+DELIMITER ;
+
+call get_comics_by_name("M");
+call get_comics_by_name("fokuda");
 
 -- -----------------------------------------------------
 -- Table `netruyen`.`chapter`
@@ -65,8 +86,18 @@ CREATE TABLE chapter (
   CONSTRAINT fk_chapter_comic1
     FOREIGN KEY (comic_id)
     REFERENCES comic (id));
-
-
+insert into chapter(name, description, source, comic_id) value("Chap 1", "", "", 1);
+insert into chapter(name, description, source, comic_id) value("Chap 2", "", "", 1);
+insert into chapter(name, description, source, comic_id) value("Chap 3", "", "", 1);
+insert into chapter(name, description, source, comic_id) value("Chap 1", "", "", 2);
+insert into chapter(name, description, source, comic_id) value("Chap 2", "", "", 2);
+insert into chapter(name, description, source, comic_id) value("Chap 3", "", "", 2);
+insert into chapter(name, description, source, comic_id) value("Chap 1", "", "", 3);
+insert into chapter(name, description, source, comic_id) value("Chap 2", "", "", 3);
+insert into chapter(name, description, source, comic_id) value("Chap 3", "", "", 3);
+insert into chapter(name, description, source, comic_id) value("Chap 4", "", "", 3);
+insert into chapter(name, description, source, comic_id) value("Chap 1", "", "", 4);
+insert into chapter(name, description, source, comic_id) value("Chap 1", "", "", 5);
 -- -----------------------------------------------------
 -- Table `netruyen`.`comic_category`
 -- -----------------------------------------------------

@@ -1,5 +1,8 @@
 package com.cybersoft.netruyen.service.imp;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,4 +36,11 @@ public class ComicServiceImp implements IComicService {
 		jsonComic.setThumbnail(file.getOriginalFilename());
 		return jsonComic;
 	}
+
+	@Override
+	public List<Map<String, ?>> getComicsByName(String name) {
+		// TODO Auto-generated method stub
+		return comicRepository.getComisByName(name);
+	}
+
 }
