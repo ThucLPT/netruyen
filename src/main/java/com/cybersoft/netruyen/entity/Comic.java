@@ -22,6 +22,12 @@ public class Comic {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "views", insertable = false)
+	private int views;
+
+	@Column(name = "content")
+	private String content;
+
 	@Column(name = "thumbnail")
 	private String thumbnail;
 
@@ -30,7 +36,7 @@ public class Comic {
 	private Author author;
 
 	@ManyToOne
-	@JoinColumn(name = "status_id")
+	@JoinColumn(name = "status_id", insertable = false)
 	private Status status;
 
 	@OneToMany(mappedBy = "comic")
@@ -54,6 +60,22 @@ public class Comic {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getThumbnail() {

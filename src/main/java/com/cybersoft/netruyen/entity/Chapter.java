@@ -1,5 +1,7 @@
 package com.cybersoft.netruyen.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +16,14 @@ public class Chapter {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "number")
-	private int number;
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "description")
+	private String description;
+
+	@Column(name = "upload_date", insertable = false)
+	private LocalDateTime uploadDate;
 
 	@Column(name = "source")
 	private String source;
@@ -32,12 +40,28 @@ public class Chapter {
 		this.id = id;
 	}
 
-	public int getNumber() {
-		return number;
+	public String getName() {
+		return name;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public LocalDateTime getUploadDate() {
+		return uploadDate;
+	}
+
+	public void setUploadDate(LocalDateTime uploadDate) {
+		this.uploadDate = uploadDate;
 	}
 
 	public String getSource() {
