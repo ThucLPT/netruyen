@@ -1,6 +1,10 @@
 package com.cybersoft.netruyen.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +22,15 @@ public class CategoryController {
 	@PostMapping("save")
 	public void save(@RequestBody Category category) {
 		categoryService.save(category);
+	}
+
+	@GetMapping("")
+	public List<Category> findAll() {
+		return categoryService.findAll();
+	}
+
+	@GetMapping("{id}")
+	public Category findById(@PathVariable int id) {
+		return categoryService.findById(id);
 	}
 }
