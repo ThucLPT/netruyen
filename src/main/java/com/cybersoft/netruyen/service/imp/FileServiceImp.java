@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +28,8 @@ public class FileServiceImp implements IFileService {
 	@Override
 	public void upload(MultipartFile file) {
 		try {
-			Files.copy(file.getInputStream(), this.path.resolve(file.getOriginalFilename()));
+			Files.copy(file.getInputStream(), this.path.resolve(file.getOriginalFilename()),
+					StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
