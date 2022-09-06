@@ -1,0 +1,32 @@
+insert into author (name) values ('Risa Tachibana');
+insert into author (name) values ('Takizawa Laura');
+insert into author (name) values ('Erika Momotani');
+insert into author (name) values ('Megu Fujiura');
+insert into author (name) values ('Tsukasa Aoi');
+insert into author (name) values ('Yua Mikami');
+insert into author (name) values ('Emiri Suzuhara');
+insert into author (name) values ('Aizawa Minami');
+insert into author (name) values ('Arina Hashimoto');
+insert into author (name) values ('Eimi Fukada');
+
+insert into category (name, description) values ('Action', 'thường có nội dung về đánh nhau, bạo lực, hỗn loạn, với diễn biến nhanh');
+insert into category (name, description) values ('Adult', 'đề cập đến vấn đề nhạy cảm, chỉ dành cho tuổi 17+');
+insert into category (name, description) values ('Adventure', 'Thể loại phiêu lưu, mạo hiểm, thường là hành trình của các nhân vật');
+insert into category (name, description) values ('Comedy', 'có nội dung trong sáng và cảm động, thường có các tình tiết gây cười, các xung đột nhẹ nhàng');
+insert into category (name, description) values ('Drama', 'mang đến cho người xem những cảm xúc khác nhau: buồn bã, căng thẳng thậm chí là bi phẫn');
+insert into category (name, description) values ('Ecchi', 'Thường có những tình huống nhạy cảm nhằm lôi cuốn người xem');
+insert into category (name, description) values ('Fantasy', 'xuất phát từ trí tưởng tượng phong phú, từ pháp thuật đến thế giới trong mơ thậm chí là những câu chuyện thần tiên');
+insert into category (name, description) values ('Harem', 'truyện tình cảm, lãng mạn mà trong đó, nhiều nhân vật nữ thích một nam nhân vật chính');
+insert into category (name, description) values ('Horror', 'làm cho bạn kinh hãi, khiếp sợ, ghê tởm, run rẩy, có thể gây shock - một thể loại không dành cho người yếu tim');
+insert into category (name, description) values ('Romance', 'Thường là những câu chuyện về tình yêu, tình cảm lãng mạn, kích thích trí tưởng tượng của bạn về tình yêu');
+
+insert into comic (name, content, thumbnail, author_id) values('One Piece', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Golgo 13', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Dragon Ball', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Conan', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Doraemon', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Naruto', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Slam Dunk', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('KochiKame', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Demon Slayer', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) values('Shin-Chan', '', '', 0);

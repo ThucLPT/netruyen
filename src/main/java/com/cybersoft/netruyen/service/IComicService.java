@@ -1,6 +1,7 @@
 package com.cybersoft.netruyen.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,4 +15,6 @@ public interface IComicService {
 	List<Comic> findAll();
 
 	Comic findById(int id);
+
+	List<Map<String, ?>> searchComic(String keyword);
 }

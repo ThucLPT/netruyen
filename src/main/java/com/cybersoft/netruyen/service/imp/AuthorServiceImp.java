@@ -16,4 +16,9 @@ public class AuthorServiceImp implements IAuthorService {
 	public void save(Author author) {
 		authorRepository.save(author);
 	}
+
+	@Override
+	public Author findById(int id) {
+		return authorRepository.findById(id).get();
+	}
 }

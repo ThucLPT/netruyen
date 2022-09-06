@@ -2,6 +2,17 @@ CREATE SCHEMA netruyen ;
 USE netruyen ;
 
 -- -----------------------------------------------------
+-- Table `netruyen`.`user`
+-- -----------------------------------------------------
+CREATE TABLE user (
+	id INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(45) NOT NULL,
+    password VARCHAR(95) NOT NULL,
+    PRIMARY KEY (id));
+INSERT INTO user (email, password) values ('admin@gmail.com', '$2a$12$iOlIOmmUjs4RLtr3nFjVqu59Ww85Us7oDLEJSq2uJqqAOO4JcMWFW');
+
+
+-- -----------------------------------------------------
 -- Table `netruyen`.`author`
 -- -----------------------------------------------------
 CREATE TABLE author (
@@ -16,7 +27,7 @@ CREATE TABLE author (
 CREATE TABLE category (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
-  description VARCHAR(45) NOT NULL,
+  description TEXT NOT NULL,
   PRIMARY KEY (id));
 
 
@@ -38,7 +49,7 @@ CREATE TABLE comic (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
   views INT NOT NULL DEFAULT 0,
-  content VARCHAR(45) NOT NULL,
+  content TEXT NOT NULL,
   thumbnail VARCHAR(45) NOT NULL,
   author_id INT NOT NULL,
   status_id INT NOT NULL DEFAULT 1,
@@ -57,7 +68,7 @@ CREATE TABLE comic (
 CREATE TABLE chapter (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
-  description VARCHAR(45) NOT NULL,
+  description TEXT NOT NULL,
   upload_date DATETIME NOT NULL DEFAULT NOW(),
   source VARCHAR(45) NOT NULL,
   comic_id INT NOT NULL,
@@ -80,3 +91,16 @@ CREATE TABLE comic_category (
   CONSTRAINT fk_comic_has_category_comic
     FOREIGN KEY (comic_id)
     REFERENCES comic (id));
+
+
+DELIMITER //
+create procedure search_comic(keyword varchar(45))
+begin
+	select c.name, c.views, c.thumbnail,  group_concat(ch.name separator ', ') Chuong
+    from comic c 
+    join chapter ch on ch.comic_id = c.id 
+    join author au on au.id = c.author_id
+    where locate(keyword, c.name) > 0 or locate(keyword, au.name) > 0
+    group by c.id;
+end//
+DELIMITER ;

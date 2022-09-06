@@ -1,6 +1,7 @@
 package com.cybersoft.netruyen.service.imp;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,10 @@ public class ComicServiceImp implements IComicService {
 	@Override
 	public Comic findById(int id) {
 		return comicRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Map<String, ?>> searchComic(String keyword) {
+		return comicRepository.searchComic(keyword);
 	}
 }
