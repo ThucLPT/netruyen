@@ -21,13 +21,13 @@ public class Crawler {
 	
 	
 	
-	private static String URL = "http://www.truyentranhtop.com/em-co-the-giu-bi-mat-giup-anh";
+	private static String URL = "http://www.truyentranhtop.com/ojou-denka-wa-oikari-no-you-desu";
 	private static String NAME_COMIC = URL.substring(URL.indexOf("top.com") + 8, URL.length());
 	static Scanner scan = new Scanner(System.in);
 	
-	public static List<Chap> getAllChap(String url, ChromeOptions options) {
+	public static List<Chap> getAllChap(String url, WebDriver driver) {
 		List<Chap> chaps = new ArrayList<Chap>();
-		WebDriver driver = new ChromeDriver(options);
+		//WebDriver driver = new ChromeDriver(options);
 		driver.get(url);
 		List<WebElement> elements = driver.findElements(By.className("list-group-item"));
 		for (WebElement e : elements) {
@@ -40,8 +40,8 @@ public class Crawler {
 		return chaps;
 	}
 	
-	public static void fileWriteThumbnail(ChromeOptions options) {
-		WebDriver driver = new ChromeDriver(options);
+	public static void fileWriteThumbnail(WebDriver driver) {
+		//WebDriver driver = new ChromeDriver(options);
 		driver.get(URL);
 		WebElement element = driver.findElement(By.className("rounded"));
 		String thumbnail = element.getAttribute("src");
@@ -69,10 +69,13 @@ public class Crawler {
 		System.out.println(elements_1.size() + elements_2.size());
 		for (WebElement e : elements_1) {
 			String urlImage = e.getAttribute("src");
+			System.out.println(urlImage);
 			fileWriteUrl(urlImage, numChap);
 		}
 		for (WebElement e : elements_2) {
-			String urlImage = e.getAttribute("src");
+			String urlImage = e.getAttribute("data-src");
+			System.out.println(urlImage);
+			fileWriteUrl(urlImage, numChap);
 		}
 		driver.close();
 	}
@@ -98,8 +101,9 @@ public class Crawler {
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
-		fileWriteThumbnail(options);
-		List<Chap> chaps = getAllChap(URL, options);
+		WebDriver driver = new ChromeDriver(options);
+		fileWriteThumbnail(driver);
+		List<Chap> chaps = getAllChap(URL, driver);
 		for (Chap chap : chaps) {
 			getAllImage(chap.getUrl(), chap.getNum_chap(), options);
 		}
