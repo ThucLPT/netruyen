@@ -1,3 +1,5 @@
+use netruyen;
+
 insert into author (name) values ('Risa Tachibana');
 insert into author (name) values ('Takizawa Laura');
 insert into author (name) values ('Erika Momotani');
@@ -20,13 +22,13 @@ insert into category (name, description) values ('Harem', 'truyện tình cảm,
 insert into category (name, description) values ('Horror', 'làm cho bạn kinh hãi, khiếp sợ, ghê tởm, run rẩy, có thể gây shock - một thể loại không dành cho người yếu tim');
 insert into category (name, description) values ('Romance', 'Thường là những câu chuyện về tình yêu, tình cảm lãng mạn, kích thích trí tưởng tượng của bạn về tình yêu');
 
-insert into comic (name, content, thumbnail, author_id) values('One Piece', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Golgo 13', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Dragon Ball', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Conan', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Doraemon', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Naruto', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Slam Dunk', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('KochiKame', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Demon Slayer', '', '', 0);
-insert into comic (name, content, thumbnail, author_id) values('Shin-Chan', '', '', 0);
+insert into comic (name, content, thumbnail, author_id) 
+values('Du thuyền đẫm máu', 'Một nhóm học sinh lên du thuyền và có vài sự kiện đẫm máu xảy ra', 'du-thuyen-dam-mau.jpg', 1);
+insert into comic (name, content, thumbnail, author_id) 
+values('Không đời nào một nhân vật phụ như tôi có thể nổi tiếng', 'Chuyện tình giữa chàng trai nhạt nhẽo và em gái thằng bạn thân', 'khong-doi-nao-mot-nhan-vat-phu-nhu-toi.jpg', 1);
+insert into comic (name, content, thumbnail, author_id) 
+values('Koko wa ima kara rinri desu', 'Đến giờ học tiết đạo đức rồi', 'koko-wa-ima-kara-rinri-desu.jpg', 2);
+insert into comic (name, content, thumbnail, author_id) 
+values('Miseru mitsumeru futarid ake', 'Cô gái tóc trắng', 'miseru-mitsumeru-futari-dake.jpg', 2);
+insert into comic (name, content, thumbnail, author_id) 
+values('Oujo denka wa oikari no you', 'Câu chuyện học đường đầy rẫy drama', 'oujo-denka-wa-oikari-no-you.jpg', 3);
