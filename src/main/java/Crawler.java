@@ -1,10 +1,17 @@
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +28,7 @@ public class Crawler {
 	
 	
 	
-	private static String URL = "http://www.truyentranhtop.com/ojou-denka-wa-oikari-no-you-desu";
+	private static String URL = "http://www.truyentranhtop.com/ke-duoc-trieu-hoi-toi-the-gioi-gia-tuong-vo-so-lan";
 	private static String NAME_COMIC = URL.substring(URL.indexOf("top.com") + 8, URL.length());
 	static Scanner scan = new Scanner(System.in);
 	
@@ -39,9 +46,41 @@ public class Crawler {
 		driver.close();
 		return chaps;
 	}
+
+//	public static void fileWriteThumbnail(WebDriver driver) {
+//		//WebDriver driver = new ChromeDriver(options);
+//		driver.get(URL);
+//		WebElement element = driver.findElement(By.className("rounded"));
+//		String thumbnail = element.getAttribute("src");
+//		File theDir = new File("ComicProject\\" + NAME_COMIC);
+//		if (!theDir.exists()){
+//		    theDir.mkdirs();
+//		}
+//		try {
+//			FileWriter fw = new FileWriter("ComicProject\\" + NAME_COMIC + "\\" + "thumbnail" + ".txt", true);
+//			BufferedWriter buffer = new BufferedWriter(fw);
+//			buffer.write(thumbnail);
+//			buffer.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+
+	public static void saveImg(String url) {
+		try {
+			URL url_ = new URL(url);
+			ReadableByteChannel rbc = Channels.newChannel(url_.openStream());
+			FileOutputStream fos = new FileOutputStream("ComicProject\\" + NAME_COMIC + "\\" + NAME_COMIC + ".jpg");
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
-	public static void fileWriteThumbnail(WebDriver driver) {
-		//WebDriver driver = new ChromeDriver(options);
+	public static void saveThumbnail(WebDriver driver) {
+	//WebDriver driver = new ChromeDriver(options);
 		driver.get(URL);
 		WebElement element = driver.findElement(By.className("rounded"));
 		String thumbnail = element.getAttribute("src");
@@ -49,15 +88,7 @@ public class Crawler {
 		if (!theDir.exists()){
 		    theDir.mkdirs();
 		}
-		try {
-			FileWriter fw = new FileWriter("ComicProject\\" + NAME_COMIC + "\\" + "thumbnail" + ".txt", true);
-			BufferedWriter buffer = new BufferedWriter(fw);
-			buffer.write(thumbnail);
-			buffer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		saveImg(thumbnail);
 	}
 	
 	public static void getAllImage(String url, String numChap, ChromeOptions options) {
@@ -102,7 +133,7 @@ public class Crawler {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
 		WebDriver driver = new ChromeDriver(options);
-		fileWriteThumbnail(driver);
+		saveThumbnail(driver);
 		List<Chap> chaps = getAllChap(URL, driver);
 		for (Chap chap : chaps) {
 			getAllImage(chap.getUrl(), chap.getNum_chap(), options);
