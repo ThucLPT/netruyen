@@ -28,7 +28,7 @@ public class Crawler {
 	
 	
 	
-	private static String URL = "http://www.truyentranhtop.com/ke-duoc-trieu-hoi-toi-the-gioi-gia-tuong-vo-so-lan";
+	private static String URL = "http://www.truyentranhtop.com/baki-gaiden-kenjin";
 	private static String NAME_COMIC = URL.substring(URL.indexOf("top.com") + 8, URL.length());
 	static Scanner scan = new Scanner(System.in);
 	
