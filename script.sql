@@ -47,10 +47,10 @@ INSERT INTO status (name) VALUES ('complete');
 -- -----------------------------------------------------
 CREATE TABLE comic (
   id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(45) NOT NULL,
+  name VARCHAR(100) NOT NULL,
   views INT NOT NULL DEFAULT 0,
   content TEXT NOT NULL,
-  thumbnail VARCHAR(45) NOT NULL,
+  thumbnail VARCHAR(100) NOT NULL,
   author_id INT NOT NULL,
   status_id INT NOT NULL DEFAULT 1,
   PRIMARY KEY (id),
@@ -70,7 +70,7 @@ CREATE TABLE chapter (
   name VARCHAR(45) NOT NULL,
   description TEXT NOT NULL,
   upload_date DATETIME NOT NULL DEFAULT NOW(),
-  source VARCHAR(45) NOT NULL,
+  source VARCHAR(100) NOT NULL,
   comic_id INT NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT fk_chapter_comic1
@@ -94,7 +94,7 @@ CREATE TABLE comic_category (
 
 
 DELIMITER //
-create procedure search_comic(keyword varchar(45))
+create procedure search_comic(keyword varchar(100))
 begin
 	select c.name, c.views, c.thumbnail,  group_concat(ch.name separator ', ') Chuong
     from comic c 
